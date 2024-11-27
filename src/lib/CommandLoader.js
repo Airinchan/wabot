@@ -21,7 +21,7 @@ export class CommandLoader {
     for (const file of files) {
       const fullPath = path.resolve(this.commandPath + file);
 
-      if (fs.statSync(fullPath).isFile() && fullPath.endsWith(".js")) {
+      if (fs.statSync(fullPath).isFile() && (fullPath.endsWith(".js") || fullPath.endsWith(".cjs"))) {
         try {
           let { default: command } = await import(fullPath);
           const name = command.name;

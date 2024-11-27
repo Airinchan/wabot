@@ -16,7 +16,7 @@ export class CommandHandler {
       const fullPath = path.join(dir, file);
       if (fs.statSync(fullPath).isDirectory()) {
         files.push(...this.readCommands(fullPath));
-      } else if (file.endsWith(".js")) {
+      } else if (file.endsWith(".js") || file.endsWith(".cjs")) {
         files.push(fullPath);
       }
     });
