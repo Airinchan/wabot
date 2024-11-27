@@ -33,23 +33,28 @@ Ubah nama file `config.example.js` menjadi `config.js` dan sesuaikan isinya.
 
 ## Jalankan Projek
 
-Terdapat beberapa opsi untuk menjalankan projek ini: 1. QR Code
-Jika anda ingin mengkoneksikan bot dengean Whatsapp anda menggunakan QR Code, jalankan perintah berikut:
-`bash
-    npm start
-    `
+Terdapat beberapa opsi untuk menjalankan projek ini:
 
-    2. Pairing Code
-    Jika anda ingin mengkoneksikan bot dengean Whatsapp anda menggunakan Pairing Code, jalankan perintah berikut:
-    ```bash
-    npm run use-pairing-code
-    ```
+1. QR Code
+   Jika anda ingin mengkoneksikan bot dengean Whatsapp anda menggunakan QR Code, jalankan perintah berikut:
 
-    3. PM:2
-    Gunakan perintah ini jika anda ingin bisa menggunakan fitur restart pada bot.
-    ```bash
-    npm run start-pm2
-    ```
+   ```bash
+   npm start
+   ```
+
+   2. Pairing Code
+      Jika anda ingin mengkoneksikan bot dengean Whatsapp anda menggunakan Pairing Code, jalankan perintah berikut:
+
+   ```bash
+   npm run use-pairing-code
+   ```
+
+   3. PM:2
+      Gunakan perintah ini jika anda ingin bisa menggunakan fitur restart pada bot.
+
+   ```bash
+   npm run start-pm2
+   ```
 
 ## Kontribusi
 
