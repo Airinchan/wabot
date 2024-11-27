@@ -31,10 +31,30 @@ Ikuti langkah-langkah berikut untuk menginstal bot:
 
 Ubah nama file `config.example.js` menjadi `config.js` dan sesuaikan isinya.
 
+## Jalankan Projek
+
+Terdapat beberapa opsi untuk menjalankan projek ini: 1. QR Code
+Jika anda ingin mengkoneksikan bot dengean Whatsapp anda menggunakan QR Code, jalankan perintah berikut:
+`bash
+    npm start
+    `
+
+    2. Pairing Code
+    Jika anda ingin mengkoneksikan bot dengean Whatsapp anda menggunakan Pairing Code, jalankan perintah berikut:
+    ```bash
+    npm run use-pairing-code
+    ```
+
+    3. PM:2
+    Gunakan perintah ini jika anda ingin bisa menggunakan fitur restart pada bot.
+    ```bash
+    npm run start-pm2
+    ```
+
 ## Kontribusi
 
 Kontribusi sangat diterima! Silakan buat pull request atau laporkan masalah melalui [Issues](https://github.com/Airinchan/wabot/issues).
 
 ## Lisensi
 
-Proyek ini dilisensikan di bawah lisensi MIT. Lihat file [LICENSE](LICENSE) untuk detail lebih lanjut.
+ISC License
