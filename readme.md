@@ -42,15 +42,15 @@ Terdapat beberapa opsi untuk menjalankan projek ini:
    npm start
    ```
 
-   2. Pairing Code
-      Jika anda ingin mengkoneksikan bot dengean Whatsapp anda menggunakan Pairing Code, jalankan perintah berikut:
+2. Pairing Code
+   Jika anda ingin mengkoneksikan bot dengean Whatsapp anda menggunakan Pairing Code, jalankan perintah berikut:
 
    ```bash
    npm run use-pairing-code
    ```
 
-   3. PM:2
-      Gunakan perintah ini jika anda ingin bisa menggunakan fitur restart pada bot.
+3. PM:2
+   Gunakan perintah ini jika anda ingin bisa menggunakan fitur restart pada bot.
 
    ```bash
    npm run start-pm2
