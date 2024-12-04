@@ -4,10 +4,12 @@ import {
   Browsers,
   fetchLatestBaileysVersion,
   makeCacheableSignalKeyStore,
+  DisconnectReason,
 } from "@whiskeysockets/baileys";
 import readline from "readline";
 import P from "pino";
 import chalk from "chalk";
+import { Utils } from "./Utils.js";
 
 let sock;
 

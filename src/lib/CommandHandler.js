@@ -24,17 +24,20 @@ export class CommandHandler {
   }
 
   async load() {
-    const prefixes = bot.prefix;
+    const defaultPrefix = bot.prefix;
     this.sock.ev.on("messages.upsert", async (msg) => {
       const ctx = new Utils(sock, msg);
       const commandFiles = this.readCommands(this.commandPath);
       for (const file of commandFiles) {
         const { default: command } = await import(file);
         if (!command?.triggers) continue;
+        const commandPrefixes = command.prefix
+          ? [command.prefix]
+          : defaultPrefix;
         for (const trigger of command.triggers) {
           const message = await ctx.getMessages();
           if (typeof message === "string") {
-            for (const prefix of prefixes) {
+            for (const prefix of commandPrefixes) {
               if (
                 message.toLowerCase().startsWith(prefix + trigger.toLowerCase())
               ) {

@@ -28,16 +28,66 @@ export class Utils {
       );
   }
 
+  async fetchGroup() {
+    /**
+    const getGroupIds = async (sock) => {
+      try {
+        console.log(chalk.blue("Fetching all group IDs..."));
+
+        const groups = await sock.groupFetchAllParticipating();
+        const groupIds = Object.keys(groups); // Mengambil semua ID grup
+
+        console.log(chalk.green("Groups found:"));
+        groupIds.forEach((id, index) => {
+          console.log(`${index + 1}. ${id} (${groups[id]?.subject})`);
+        });
+
+        return groupIds;
+      } catch (error) {
+        console.error(chalk.red("Failed to fetch group IDs:"), error);
+      }
+    };
+
+     */
+
+    let result = [];
+    try {
+      const groups = await this.sock.groupFetchAllParticipating();
+      const groupIds = Object.keys(groups);
+      for (let groupId of groupIds) {
+        try {
+          // const groupPictureUrl = await this.sock.groupPictureUrl(groupId);
+          const ppUrl = await this.sock.profilePictureUrl(groupId, "image");
+          const groupSubject = groups[groupId]?.subject;
+          result.push({
+            groupId: groupId,
+            groupSubject: groupSubject,
+            groupPictureUrl: ppUrl,
+          });
+        } catch (err) {
+          return err;
+        }
+      }
+      return result;
+    } catch (error) {
+      return error;
+    }
+  }
+
   async getMessages() {
-    const messageType = Object.keys(this.msg?.messages[0]?.message)[0];
+    const message = this.msg?.messages[0]?.message;
+    if (!message) {
+      return "";
+    }
+    const messageType = Object.keys(message)[0];
     return messageType === "conversation"
-      ? this.msg.messages[0].message.conversation
+      ? message.conversation
       : messageType === "extendedTextMessage"
-      ? this.msg.messages[0].message.extendedTextMessage.text
+      ? message.extendedTextMessage.text
       : messageType === "imageMessage"
-      ? this.msg.messages[0].message.imageMessage.caption
+      ? message.imageMessage.caption
       : messageType === "videoMessage"
-      ? this.msg.messages[0].message.videoMessage.caption
+      ? message.videoMessage.caption
       : "";
   }
 
@@ -181,30 +231,31 @@ export class Utils {
     return `\`${message}\``;
   }
 
-  async isGroup(msg) {
-    return msg.messages[0].key.remoteJid?.endsWith("@g.us") || false;
+  async isGroup() {
+    return this.msg.messages[0].key.remoteJid?.endsWith("@g.us") || false;
   }
 
-  async isFromMe(msg) {
-    return msg.messages[0].key.fromMe || false;
+  async isFromMe() {
+    return this.msg.messages[0].key.fromMe || false;
   }
 
-  async messageType(msg) {
-    return Object.keys(msg.messages[0].message || {})[0] || null;
+  async messageType() {
+    return Object.keys(this.msg.messages[0].message || {})[0] || null;
   }
 
-  async isQuotedMediaMsg(msg) {
+  async isQuotedMediaMsg() {
     const contextInfo =
-      msg.messages[0]?.message?.extendedTextMessage?.contextInfo || {};
+      this.msg.messages[0]?.message?.extendedTextMessage?.contextInfo || {};
     const quotedMessage = contextInfo?.quotedMessage || {};
     return !!(
       quotedMessage.imageMessage?.url || quotedMessage.videoMessage?.url
     );
   }
 
-  async isOwner(msg) {
+  async isOwner() {
     const participant =
-      msg.messages[0].key.participant || msg.messages[0].key.remoteJid;
+      this.msg.messages[0].key.participant ||
+      this.msg.messages[0].key.remoteJid;
     const number = participant.split("@")[0];
     return number === this.ownerNumber;
   }

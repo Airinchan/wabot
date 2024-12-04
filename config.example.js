@@ -10,4 +10,8 @@ const stickerConfig = {
   author: "Idun",
 };
 
-export { bot, stickerConfig };
+const Gemini_API_KEY = "";
+// dapankan gemini apikey nya di https://aistudio.google.com/app/apikey
+// gratis ngab tenang aja
+
+export { bot, stickerConfig, Gemini_API_KEY };
