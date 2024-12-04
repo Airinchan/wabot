@@ -1,8 +1,8 @@
 export default {
     name: "Ping",
-    triggers: ["ping", "p"],
+    triggers: ["ping"],
     info: {},
-    development: false,
+    development: true,
     code: async (ctx) => {
         ctx.reply("pong")
     }

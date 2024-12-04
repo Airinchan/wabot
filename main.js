@@ -15,6 +15,8 @@ const main = async () => {
 main();
 
 /**
- * note:
- * sebagian kode hasil copas dari https://github.com/kazedepid/whatsapp-bot
+ * note
+ * sebagian kode hasil copas dari:
+ * https://github.com/kazedepid/whatsapp-bot
+ * https://github.com/itsreimau/ckptw-wabot/
  */

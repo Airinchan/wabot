@@ -57,7 +57,7 @@ export class CommandLoader {
               `[loaded] ${command.name} (${
                 command.status ? "development" : "stable"
               })`
-            )) + chalk.gray(` | Triggers: [${command.triggers.join(", ")}]`)
+            )) + chalk.gray(` | Triggers: [${command?.triggers?.join(", ")}]`)
       );
     });
 

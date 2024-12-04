@@ -1,10 +1,12 @@
 export class Utils {
   sock;
   msg;
+  id;
 
   constructor(sock, msg) {
     this.sock = sock;
     this.msg = msg;
+    this.id = msg.messages[0].key.remoteJid;
   }
 
   async reply(content, options = {}) {

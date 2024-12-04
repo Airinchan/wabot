@@ -3,6 +3,8 @@ import { Utils } from "./Utils.js";
 import fs from "fs";
 import path from "path";
 import { bot } from "../../config.js";
+import { createRequire } from "module";
+const require = createRequire(import.meta.url);
 
 export class CommandHandler {
   constructor(sock, commandPath) {
@@ -29,7 +31,9 @@ export class CommandHandler {
       const ctx = new Utils(sock, msg);
       const commandFiles = this.readCommands(this.commandPath);
       for (const file of commandFiles) {
-        const { default: command } = await import(file);
+        const { default: command } = file.endsWith(".cjs")
+          ? require(file)
+          : await import(file);
         if (!command?.triggers) continue;
         const commandPrefixes = command.prefix
           ? [command.prefix]
